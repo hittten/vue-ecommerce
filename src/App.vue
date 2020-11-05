@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Header/>
+    <ProductList/>
   </div>
 </template>
 
 <script>
 
 import Header from '@/components/Header.vue';
+import ProductList from '@/components/ProductList.vue';
 
 export default {
   name: 'App',
   components: {
+    ProductList,
     Header,
   },
 };
@@ -34,6 +37,14 @@ span.material-icons {
 .wrapper {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.button {
+  padding: 8px 15px;
+  background: dodgerblue;
+  border: none;
+  border-radius: 2px;
+  color: white;
 }
 
 </style>
