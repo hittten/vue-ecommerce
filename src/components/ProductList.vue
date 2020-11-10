@@ -2,23 +2,19 @@
   <div class="wrapper">
     <h1>Products</h1>
     <div class="views">
-      <span class="material-icons">
+      <span :class="[{selected:!gridView}, 'material-icons']" @click="gridView=false">
         view_list
       </span>
-      <span class="material-icons">
+      <span :class="[{selected:gridView}, 'material-icons']" @click="gridView=true">
         view_module
       </span>
     </div>
-    <ul>
+    <ul :class="{grid:gridView}">
       <li v-for="product in products" :key="product.id">
         <h2>{{ product.name }}</h2>
         <img :src="product.image" :alt="product.name">
         <p>
-          {{
-            product.description.length > 150 ?
-              product.description.slice(0, 150) + '...' :
-              product.description
-          }}
+          {{ shortDescription(product.description, 150) }}
         </p>
         <div class="price">{{ product.price }} €</div>
         <div>
@@ -37,8 +33,19 @@ export default {
   name: 'ProductList',
   data() {
     return {
+      gridView: false,
       products: PRODUCTS,
     };
+  },
+  mounted() {
+    console.log('products listed');
+  },
+  methods: {
+    shortDescription(text, size) {
+      return text.length > size
+        ? `${text.slice(0, size)}...`
+        : text;
+    },
   },
 };
 </script>
@@ -50,6 +57,11 @@ export default {
 
 .views span {
   margin-right: 5px;
+}
+
+.views .selected {
+  border: 1px solid darkgray;
+  background: lightgrey;
 }
 
 ul {
@@ -92,4 +104,24 @@ ul li .price {
   font-size: 16px;
   font-weight: bold;
 }
+
+/*grid view*/
+ul.grid {
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+}
+
+ul.grid li {
+  display: block;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+ul.grid li img {
+  max-width: none;
+}
+
+ul.grid li p {
+  display: none;
+}
+
 </style>
