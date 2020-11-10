@@ -16,7 +16,7 @@
         <p>
           {{ shortDescription(product.description, 150) }}
         </p>
-        <div class="price">{{ product.price }} €</div>
+        <div class="price">{{ product.price | currency }}</div>
         <div>
           <button class="button">add to cart</button>
         </div>
@@ -45,6 +45,15 @@ export default {
       return text.length > size
         ? `${text.slice(0, size)}...`
         : text;
+    },
+  },
+  filters: {
+    currency(value) {
+      return value.toLocaleString('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+        currencyDisplay: 'symbol',
+      });
     },
   },
 };
