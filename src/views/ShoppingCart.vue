@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <ProductList title="Shopping Cart" :products="products"/>
+    <ProductList
+      title="Shopping Cart"
+      :products="products"
+      button-text="remove from cart"
+      @button-click="removeFromCart($event)"
+    />
   </div>
 </template>
 
@@ -17,6 +22,12 @@ export default {
     return {
       products: SHOPPING_CART,
     };
+  },
+  methods: {
+    removeFromCart(product) {
+      const id = SHOPPING_CART.findIndex((value) => value.id === product.id);
+      SHOPPING_CART.splice(id, 1);
+    },
   },
 };
 </script>
