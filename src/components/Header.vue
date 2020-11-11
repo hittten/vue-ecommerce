@@ -19,6 +19,13 @@
             <i class="material-icons" v-if="actualRoute!=='Shopping cart'">keyboard_arrow_right</i>
           </router-link>
         </li>
+        <li>
+          <router-link to="/add-product">
+            <i class="material-icons">note_add</i>
+            New product
+            <i class="material-icons" v-if="actualRoute!=='Add product'">keyboard_arrow_right</i>
+          </router-link>
+        </li>
       </ul>
     </nav>
     <div>

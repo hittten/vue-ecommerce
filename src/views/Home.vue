@@ -9,8 +9,7 @@
 </template>
 
 <script>
-import PRODUCTS from '@/mock-products';
-import SHOPPING_CART from '@/mock-shopping-cart';
+import * as productService from '@/product-service';
 import ProductList from '@/components/ProductList.vue';
 
 export default {
@@ -20,13 +19,12 @@ export default {
   },
   data() {
     return {
-      products: PRODUCTS,
+      products: productService.list(),
     };
   },
   methods: {
     addToShoppingCart(product) {
-      console.log(product);
-      SHOPPING_CART.push({ ...product });
+      productService.addToShoppingCart(product);
     },
   },
 };

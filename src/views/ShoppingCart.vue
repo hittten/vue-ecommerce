@@ -10,8 +10,8 @@
 </template>
 
 <script>
+import * as productService from '@/product-service';
 import ProductList from '@/components/ProductList.vue';
-import SHOPPING_CART from '@/mock-shopping-cart';
 
 export default {
   name: 'ShoppingCart',
@@ -20,13 +20,12 @@ export default {
   },
   data() {
     return {
-      products: SHOPPING_CART,
+      products: productService.listShoppingCart(),
     };
   },
   methods: {
     removeFromCart(product) {
-      const id = SHOPPING_CART.findIndex((value) => value.id === product.id);
-      SHOPPING_CART.splice(id, 1);
+      productService.removeFromShoppingCart(product);
     },
   },
 };

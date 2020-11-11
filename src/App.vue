@@ -35,10 +35,21 @@ span.material-icons {
 }
 
 .button {
+  outline: none;
+  cursor: pointer;
   padding: 8px 15px;
   background: dodgerblue;
   border: none;
   border-radius: 2px;
   color: white;
 }
+
+.button:disabled {
+  background-color: lightblue;
+}
+
+.button:active {
+  background-color: deepskyblue;
+}
+
 </style>

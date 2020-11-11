@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import AddProduct from '@/views/AddProduct.vue';
 import Home from '../views/Home.vue';
 import ShoppingCart from '../views/ShoppingCart.vue';
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/shopping-cart',
     name: 'Shopping cart',
     component: ShoppingCart,
+  },
+  {
+    path: '/add-product',
+    name: 'Add product',
+    component: AddProduct,
   },
   {
     path: '/about',
