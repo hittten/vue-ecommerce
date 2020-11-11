@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1>Products</h1>
+    <h1>{{ title }}</h1>
     <div class="views">
       <span :class="[{selected:!gridView}, 'material-icons']" @click="gridView=false">
         view_list
@@ -27,15 +27,23 @@
 
 <script>
 
-import PRODUCTS from '@/mock-products';
-
 export default {
   name: 'ProductList',
   data() {
     return {
       gridView: false,
-      products: PRODUCTS,
     };
+  },
+  props: {
+    products: {
+      id: String,
+      name: String,
+      price: Number,
+      description: String,
+      image: String,
+      createdAt: String,
+    },
+    title: String,
   },
   mounted() {
     console.log('products listed');

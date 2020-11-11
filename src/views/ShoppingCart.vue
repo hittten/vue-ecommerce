@@ -1,21 +1,21 @@
 <template>
   <div class="home">
-    <ProductList title="Products" :products="products"/>
+    <ProductList title="Shopping Cart" :products="products"/>
   </div>
 </template>
 
 <script>
-import PRODUCTS from '@/mock-products';
 import ProductList from '@/components/ProductList.vue';
+import SHOPPING_CART from '@/mock-shopping-cart';
 
 export default {
-  name: 'Home',
+  name: 'ShoppingCart',
   components: {
     ProductList,
   },
   data() {
     return {
-      products: PRODUCTS,
+      products: SHOPPING_CART,
     };
   },
 };
