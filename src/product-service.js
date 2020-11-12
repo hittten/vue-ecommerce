@@ -1,6 +1,14 @@
 import PRODUCTS from '@/mock-products';
 import SHOPPING_CART from '@/mock-shopping-cart';
 
+function promisify(value) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(value);
+    }, 500);
+  });
+}
+
 export const create = (productForm) => {
   const product = {};
   product.id = PRODUCTS.length + 1;
@@ -12,20 +20,27 @@ export const create = (productForm) => {
 
   PRODUCTS.push(product);
 
-  return product;
+  return promisify(product);
 };
 
-export const list = () => PRODUCTS;
+export const list = () => promisify(PRODUCTS);
 
-export const listShoppingCart = () => SHOPPING_CART;
+export const listShoppingCart = () => promisify(SHOPPING_CART);
 
 export const addToShoppingCart = (product) => {
   SHOPPING_CART.push(product);
 
-  return product;
+  return promisify(product);
 };
 
 export const removeFromShoppingCart = (product) => {
-  const id = SHOPPING_CART.findIndex((value) => value.id === product.id);
-  SHOPPING_CART.splice(id, 1);
+  const index = SHOPPING_CART.findIndex((value) => value.id === product.id);
+  const removedProduct = SHOPPING_CART[index];
+
+  return promisify(removedProduct)
+    .then((oldProduct) => {
+      SHOPPING_CART.splice(index, 1);
+
+      return oldProduct;
+    });
 };

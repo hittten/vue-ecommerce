@@ -52,4 +52,9 @@ span.material-icons {
   background-color: deepskyblue;
 }
 
+.loading {
+  display: block;
+  margin: 50px auto;
+}
+
 </style>

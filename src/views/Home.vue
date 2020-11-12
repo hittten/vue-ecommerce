@@ -1,9 +1,12 @@
 <template>
   <div class="home">
-    <ProductList title="Products"
-                 button-text="Add to cart"
-                 @button-click="addToShoppingCart($event)"
-                 :products="products"
+    <img v-if="loading" class="loading" src="@/assets/spinner.svg" alt="loading">
+    <ProductList
+      v-if="!loading"
+      title="Products"
+      button-text="Add to cart"
+      @button-click="addToShoppingCart($event)"
+      :products="products"
     />
   </div>
 </template>
@@ -19,12 +22,22 @@ export default {
   },
   data() {
     return {
-      products: productService.list(),
+      products: [],
+      loading: true,
     };
+  },
+  beforeCreate() {
+    productService.list()
+      .then((value) => {
+        this.products = value;
+        this.loading = false;
+      });
   },
   methods: {
     addToShoppingCart(product) {
-      productService.addToShoppingCart(product);
+      productService.addToShoppingCart(product).then((newProduct) => {
+        console.log('product', newProduct.name, 'was added to shopping cart');
+      });
     },
   },
 };
