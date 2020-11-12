@@ -35,8 +35,8 @@ export default {
   },
   methods: {
     addToShoppingCart(product) {
-      productService.addToShoppingCart(product).then((newProduct) => {
-        console.log('product', newProduct.name, 'was added to shopping cart');
+      productService.addToShoppingCart(product).then(() => {
+        console.log('product', product.name, 'was added to shopping cart');
       });
     },
   },

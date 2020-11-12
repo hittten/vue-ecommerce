@@ -53,8 +53,10 @@ export default {
   },
   methods: {
     submitForm() {
-      document.forms[0].reset();
-      productService.create(this.form);
+      productService.create(this.form)
+        .then(() => {
+          document.forms[0].reset();
+        });
     },
   },
 };
@@ -86,6 +88,7 @@ form input, textarea {
 form textarea {
   height: 100px;
 }
+
 form .error {
   color: red;
 }

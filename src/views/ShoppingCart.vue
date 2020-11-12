@@ -35,9 +35,16 @@ export default {
   },
   methods: {
     removeFromCart(product) {
+      this.loading = true;
       productService.removeFromShoppingCart(product)
-        .then((oldProduct) => {
-          console.log('product', oldProduct.name, 'was removed from shopping cart');
+        .then(() => {
+          console.log('product', product.name, 'was removed from shopping cart');
+
+          productService.listShoppingCart()
+            .then(((products) => {
+              this.products = products;
+              this.loading = false;
+            }));
         });
     },
   },

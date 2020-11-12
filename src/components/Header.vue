@@ -5,21 +5,21 @@
     </span>
     <nav v-show="navOpen">
       <ul>
-        <li>
+        <li @click="navOpen = false">
           <router-link to="/">
             <i class="material-icons">view_list</i>
             Products
             <i class="material-icons" v-if="actualRoute!=='Home'">keyboard_arrow_right</i>
           </router-link>
         </li>
-        <li>
+        <li @click="navOpen = false">
           <router-link to="/shopping-cart">
             <i class="material-icons">shopping_cart</i>
             Shopping Car
             <i class="material-icons" v-if="actualRoute!=='Shopping cart'">keyboard_arrow_right</i>
           </router-link>
         </li>
-        <li>
+        <li @click="navOpen = false">
           <router-link to="/add-product">
             <i class="material-icons">note_add</i>
             New product
@@ -103,6 +103,7 @@ header nav ul a:hover {
 header nav ul a span {
   margin-right: 8px;
 }
+
 header nav ul a.router-link-exact-active {
   color: gray;
 }
